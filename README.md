@@ -9,10 +9,10 @@ Show Don't Tell
 ===============
 * [examples/basic.html](http://jeromeetienne.github.io/threex.poolball/examples/basic.html)
 \[[view source](https://github.com/jeromeetienne/threex.poolball/blob/master/examples/basic.html)\] :
-It shows this feature, and that one which is coded like that.
+It shows a basic usage of this extension
 * [examples/demo.html](http://jeromeetienne.github.io/threex.poolball/examples/demo.html)
 \[[view source](https://github.com/jeromeetienne/threex.poolball/blob/master/examples/demo.html)\] :
-It does that this way, and it is cool in that case.
+It shows multiple pool balls setup like on a pool table :)
 
 A Screenshot
 ============
