@@ -2,7 +2,8 @@ threex.poolball
 ===============
 
 threex.poolball is a three.js extension which helps you build pool balls.
-It is done by procedural generation, so no model download needed.
+It provides dynamically generated models of pool ball, so no model download needed.
+May be fun to play with when you start with three.js, funnier than plain sphere for sure :)
 
 Show Don't Tell
 ===============
@@ -27,6 +28,10 @@ Or you can install with [bower](http://bower.io/), as you wish.
 ```bash
 bower install threex.poolball
 ```
+
+A Screenshot
+============
+[![screenshot](https://raw.githubusercontent.com/jeromeetienne/threex.poolball/master/examples/images/screenshot-threex-poolball-512x512.jpg)](http://jeromeetienne.github.io/threex.poolball/examples/demo.html)
 
 How To Use It
 =============
