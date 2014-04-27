@@ -14,6 +14,10 @@ It shows this feature, and that one which is coded like that.
 \[[view source](https://github.com/jeromeetienne/threex.poolball/blob/master/examples/demo.html)\] :
 It does that this way, and it is cool in that case.
 
+A Screenshot
+============
+[![screenshot](https://raw.githubusercontent.com/jeromeetienne/threex.poolball/master/examples/images/screenshot-threex-poolball-512x512.jpg)](http://jeromeetienne.github.io/threex.poolball/examples/demo.html)
+
 How To Install It
 =================
 
@@ -28,10 +32,6 @@ Or you can install with [bower](http://bower.io/), as you wish.
 ```bash
 bower install threex.poolball
 ```
-
-A Screenshot
-============
-[![screenshot](https://raw.githubusercontent.com/jeromeetienne/threex.poolball/master/examples/images/screenshot-threex-poolball-512x512.jpg)](http://jeromeetienne.github.io/threex.poolball/examples/demo.html)
 
 How To Use It
 =============
