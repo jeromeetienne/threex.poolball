@@ -1,9 +1,7 @@
 threex.poolball
 ===============
 
-threex.poolball is a three.js extension which helps you build pool balls.
-It provides dynamically generated models of pool ball, so no model download needed.
-May be fun to play with when you start with three.js, funnier than plain sphere for sure :)
+threex.poolball is a [three.js games extension](http://www.threejsgames.com/extensions/) which helps you build pool balls. It provides dynamically generated models of pool balls, so no model download needed. It may be fun to play with when you start with three.js, funnier than a plain sphere for sure :) You can use it for your bar games, having  your characters bet when playing pool, or even your [Marble Table](http://jeromeetienne.github.io/marbleTable/) games, as I did, adding cool granular sounds when the balls roll. 
 
 Show Don't Tell
 ===============
