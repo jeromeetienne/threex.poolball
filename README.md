@@ -10,6 +10,10 @@ Show Don't Tell
 It shows a basic usage of this extension
 * [examples/demo.html](http://jeromeetienne.github.io/threex.poolball/examples/demo.html)
 \[[view source](https://github.com/jeromeetienne/threex.poolball/blob/master/examples/demo.html)\] :
+It shows multiple pool balls trying to crush a minecraft character.
+WebAudio API is used for the rolling sound which is granular.
+* [examples/pool9ball.html](http://jeromeetienne.github.io/threex.poolball/examples/pool9ball.html)
+\[[view source](https://github.com/jeromeetienne/threex.poolball/blob/master/examples/pool9ball.html)\] :
 It shows multiple pool balls setup like on a pool table :)
 
 A Screenshot
