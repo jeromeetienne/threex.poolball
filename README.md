@@ -61,3 +61,6 @@ Some ball description are already done.
 * ```cue``` will return an unstripped white ball
 * ```black``` will return an unstripped black ball
 * ```1``` to ```9``` will assign the official colors for [nine-ball](http://en.wikipedia.org/wiki/Nine-ball) pool
+
+### Possible Improvements:
+* to add a shaddow, something simple like in threex.pacman
