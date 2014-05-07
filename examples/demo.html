@@ -48,11 +48,11 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 	//////////////////////////////////////////////////////////////////////////////////
 
 	var sunAngle = Math.PI+Math.PI/2;
-	var sunAngle = Math.PI-Math.PI/16;
-	// onRenderFcts.push(function(delta, now){
-	// 	var dayDuration	= 20
-	// 	sunAngle	-= delta/dayDuration * Math.PI*2
-	// })
+	onRenderFcts.push(function(delta, now){
+		var dayDuration	= 20
+		sunAngle	-= delta/dayDuration * Math.PI*2
+	})
+	// var sunAngle = Math.PI-Math.PI/16;
 	//////////////////////////////////////////////////////////////////////////////////
 	//		starfield							//
 	//////////////////////////////////////////////////////////////////////////////////
@@ -130,10 +130,9 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 		map		: textureDiffuse,
 		normalMap	: textureNormal,
 		normalScale	: new THREE.Vector2(1,1).multiplyScalar(0.5),
-		emissive	: 'green',
+		emissive	: 0x008800,
 	})
-console.dir(material)
-window.groundMaterial	= material
+
  	var mesh	= new THREE.Mesh(geometry, material)
  	mesh.lookAt(new THREE.Vector3(0,1,0))
  	scene.add(mesh)
@@ -147,8 +146,7 @@ window.groundMaterial	= material
 	var player	= new THREEx.MinecraftPlayer()
 	player.character.root.rotation.y = Math.PI
 	player.character.root.position.x = 0
-	player.character.root.position.z = 2
-	player.character.root.position.z = 7
+	player.character.root.position.z = 10
 	scene.add(player.character.root)
 	onRenderFcts.push(function(delta, now){
 		player.update(delta, now)
@@ -297,7 +295,7 @@ window.groundMaterial	= material
 			scene.add( object3d );
 
 			object3d.position.x	= (((i+0.5)/nBalls)-0.5)*14
-			object3d.position.y	= 0.5
+			object3d.position.y	= object3d.geometry.radius
 			object3d.position.z	= 1
 
 			var velocity	= new THREE.Vector3(0,0,2)			
@@ -366,8 +364,9 @@ window.groundMaterial	= material
 				var translation	= new THREE.Vector3(position.x,position.y,position.z)
 				var matrix	= new THREE.Matrix4().makeTranslation(translation.x, translation.y, translation.z);
 				// TODO make it radius independant
-				matrix.multiply(  new THREE.Matrix4().makeRotationZ(-velocity.x*Math.PI/2));
-				matrix.multiply(  new THREE.Matrix4().makeRotationX( velocity.z*Math.PI/2));
+				var radius	= object3d.geometry.radius * object3d.scale.x
+				matrix.multiply(  new THREE.Matrix4().makeRotationZ(-velocity.x/(Math.PI*2*radius)));
+				matrix.multiply(  new THREE.Matrix4().makeRotationX( velocity.z/(Math.PI*2*radius)));
 				matrix.multiply(
 					new THREE.Matrix4().makeTranslation(-translation.x, -translation.y, -translation.z)
 				);
