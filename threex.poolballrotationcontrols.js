@@ -1,8 +1,9 @@
 var THREEx	= THREEx	|| {}
 
 /**
- * Creator for tQuery.PoolBall
- * @return {tQuery.Mesh} instance of 
+ * Control ball rotation base on velocity. 
+ * Thus you get to worry only about translation.
+ * It assumes the ball doesnt slides and moves on a plane surface
  */
 THREEx.PoolBallRotationControls	= function(object3d){
 
@@ -29,10 +30,8 @@ THREEx.PoolBallRotationControls	= function(object3d){
 		// c = circumference
 		// (velocity/(2*PI*radius)) * Math.PI*2
 		var radius	= object3d.geometry.radius * object3d.scale.x
-		// matrix.multiply(  new THREE.Matrix4().makeRotationZ(-velocity.x*(Math.PI/2*radius)));
-		// matrix.multiply(  new THREE.Matrix4().makeRotationX( velocity.z*(Math.PI/2*radius)));
-		matrix.multiply(  new THREE.Matrix4().makeRotationZ(-velocity.x*(Math.PI/2*radius)));
-		matrix.multiply(  new THREE.Matrix4().makeRotationX( velocity.z*(Math.PI/2*radius)));
+		matrix.multiply(  new THREE.Matrix4().makeRotationZ(-velocity.x*(Math.PI*radius)));
+		matrix.multiply(  new THREE.Matrix4().makeRotationX( velocity.z*(Math.PI*radius)));
 		matrix.multiply(
 			new THREE.Matrix4().makeTranslation(-translation.x, -translation.y, -translation.z)
 		);

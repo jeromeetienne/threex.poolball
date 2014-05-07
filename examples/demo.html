@@ -331,7 +331,19 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 				velocity.setLength(2+Math.random())
 			}
 
-			// add shadow
+
+
+			//////////////////////////////////////////////////////////////////////////////////
+			//		rotation controls						//
+			//////////////////////////////////////////////////////////////////////////////////
+			var controls	= new THREEx.PoolBallRotationControls(object3d)
+			onRenderFcts.push(function(){
+				controls.update()
+			})
+
+			//////////////////////////////////////////////////////////////////////////////////
+			//		add shadow						//
+			//////////////////////////////////////////////////////////////////////////////////
 			;(function(){
 				var shadow	= THREEx.createPoolBallShadow();
 				shadow.position.x	= object3d.position.x
@@ -345,11 +357,6 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 			})()
 
 
-			// handle rotation controls
-			var controls	= new THREEx.PoolBallRotationControls(object3d)
-			onRenderFcts.push(function(){
-				controls.update()
-			})
 
 			//////////////////////////////////////////////////////////////////////////////////
 			//		rollingSounds						//
@@ -363,19 +370,6 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 	}
 })()
 
-	//////////////////////////////////////////////////////////////////////////////////
-	//		Camera Controls							//
-	//////////////////////////////////////////////////////////////////////////////////
-	// var mouse	= {x : 0, y : 0}
-	// document.addEventListener('mousemove', function(event){
-	// 	mouse.x	= (event.clientX / window.innerWidth ) - 0.5
-	// 	mouse.y	= (event.clientY / window.innerHeight) - 0.5
-	// }, false)
-	// onRenderFcts.push(function(delta, now){
-	// 	camera.position.x += (mouse.x*5 - camera.position.x) * (delta*3)
-	// 	camera.position.y += (mouse.y*5 +2 - camera.position.y) * (delta*3)
-	// 	camera.lookAt( scene.position )
-	// })
 
 
 	//////////////////////////////////////////////////////////////////////////////////
