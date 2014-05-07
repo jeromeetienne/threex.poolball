@@ -108,22 +108,36 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 	//		ground								//
 	//////////////////////////////////////////////////////////////////////////////////
 
-	var textureUrl	= 'images/grasslight-small.jpg';
-	var texture	= THREE.ImageUtils.loadTexture(textureUrl);
-	texture.wrapS	= THREE.RepeatWrapping;
-	texture.wrapT	= THREE.RepeatWrapping;
-	texture.repeat.x= 10
-	texture.repeat.y= 10
-	texture.anisotropy = 16;
+;(function(){
+	var textureDiffuseUrl	= 'images/grasslight-small-diffuse.jpg';
+	var textureDiffuse	= THREE.ImageUtils.loadTexture(textureDiffuseUrl);
+	textureDiffuse.wrapS	= THREE.RepeatWrapping;
+	textureDiffuse.wrapT	= THREE.RepeatWrapping;
+	textureDiffuse.repeat.x	= 10
+	textureDiffuse.repeat.y	= 10
+	textureDiffuse.anisotropy = 16;
+
+	var textureNormalUrl	= 'images/grasslight-small-normal.jpg';
+	var textureNormal	= THREE.ImageUtils.loadTexture(textureNormalUrl);
+	textureNormal.wrapS	= THREE.RepeatWrapping;
+	textureNormal.wrapT	= THREE.RepeatWrapping;
+	textureNormal.repeat.x	= 10
+	textureNormal.repeat.y	= 10
+	textureNormal.anisotropy = 16;
 
 	var geometry	= new THREE.CircleGeometry(30, 32)
 	var material	= new THREE.MeshPhongMaterial({
-		map	: texture,
+		map		: textureDiffuse,
+		normalMap	: textureNormal,
+		normalScale	: new THREE.Vector2(1,1).multiplyScalar(0.5),
+		emissive	: 'green',
 	})
+console.dir(material)
+window.groundMaterial	= material
  	var mesh	= new THREE.Mesh(geometry, material)
  	mesh.lookAt(new THREE.Vector3(0,1,0))
  	scene.add(mesh)
-
+})()
 	//////////////////////////////////////////////////////////////////////////////////
 	//		comment								//
 	//////////////////////////////////////////////////////////////////////////////////
@@ -239,41 +253,41 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 			stripped	: true,			
 			textureW	: 512,
 		},
-		// {
-		// 	ballDesc	: '9',
-		// 	stripped	: true,				
-		// 	textureW	: 512,
-		// },
-		// {
-		// 	ballDesc	: '8',
-		// 	stripped	: true,				
-		// 	textureW	: 512,
-		// },
-		// {
-		// 	ballDesc	: '2',
-		// 	stripped	: false,				
-		// 	textureW	: 512,
-		// },
-		// {
-		// 	ballDesc	: '3',
-		// 	stripped	: true,			
-		// 	textureW	: 512,
-		// },
-		// {
-		// 	ballDesc	: '9',
-		// 	stripped	: true,				
-		// 	textureW	: 512,
-		// },
-		// {
-		// 	ballDesc	: '8',
-		// 	stripped	: true,				
-		// 	textureW	: 512,
-		// },
-		// {
-		// 	ballDesc	: '2',
-		// 	stripped	: false,				
-		// 	textureW	: 512,
-		// },
+		{
+			ballDesc	: '9',
+			stripped	: true,				
+			textureW	: 512,
+		},
+		{
+			ballDesc	: '8',
+			stripped	: true,				
+			textureW	: 512,
+		},
+		{
+			ballDesc	: '2',
+			stripped	: false,				
+			textureW	: 512,
+		},
+		{
+			ballDesc	: '3',
+			stripped	: true,			
+			textureW	: 512,
+		},
+		{
+			ballDesc	: '9',
+			stripped	: true,				
+			textureW	: 512,
+		},
+		{
+			ballDesc	: '8',
+			stripped	: true,				
+			textureW	: 512,
+		},
+		{
+			ballDesc	: '2',
+			stripped	: false,				
+			textureW	: 512,
+		},
 	]
 	var nBalls	= ballDescriptions.length
 	for(var i = 0; i < nBalls; i++){
@@ -381,7 +395,7 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 				// TODO expose this.utterance when loaded
 				var utterance	= sound.play({
 					loop	: true,
-					volume	: 2.0,
+					volume	: 0.5,
 					follow	: object3d,
 				})
 
