@@ -48,10 +48,11 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 	//////////////////////////////////////////////////////////////////////////////////
 
 	var sunAngle = Math.PI+Math.PI/2;
-	onRenderFcts.push(function(delta, now){
-		var dayDuration	= 20
-		sunAngle	-= delta/dayDuration * Math.PI*2
-	})
+	var sunAngle = Math.PI-Math.PI/16;
+	// onRenderFcts.push(function(delta, now){
+	// 	var dayDuration	= 20
+	// 	sunAngle	-= delta/dayDuration * Math.PI*2
+	// })
 	//////////////////////////////////////////////////////////////////////////////////
 	//		starfield							//
 	//////////////////////////////////////////////////////////////////////////////////
@@ -138,17 +139,33 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 	onRenderFcts.push(function(delta, now){
 		player.update(delta, now)
 	})
-	
+		
+	// prevent the player from going out of the map
 	onRenderFcts.push(function(delta, now){
 		var position	= player.character.root.position
 		var maxRadius	= 12
 		if( position.length() > maxRadius )	position.setLength(maxRadius)
 	})
+
+	// add shadow
+	;(function(){
+		var object3d	= player.character.root
+		var shadow	= THREEx.createPoolBallShadow();
+		shadow.position.x	= object3d.position.x
+		shadow.position.y	= 0.01
+		shadow.position.z	= object3d.position.z
+		shadow.scale.multiplyScalar(0.7)
+		scene.add(shadow)
+		onRenderFcts.push(function(){
+			shadow.position.x	= object3d.position.x
+			shadow.position.z	= object3d.position.z
+		})
+	})()
 	
 
 	// attach camera to player
 	player.character.root.add(camera)
-	camera.position.z	= -2
+	camera.position.z	= -3
 	camera.position.y	= 1.2
 	camera.lookAt(new THREE.Vector3(0,0.5,3))
 
@@ -222,41 +239,41 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 			stripped	: true,			
 			textureW	: 512,
 		},
-		{
-			ballDesc	: '9',
-			stripped	: true,				
-			textureW	: 512,
-		},
-		{
-			ballDesc	: '8',
-			stripped	: true,				
-			textureW	: 512,
-		},
-		{
-			ballDesc	: '2',
-			stripped	: false,				
-			textureW	: 512,
-		},
-		{
-			ballDesc	: '3',
-			stripped	: true,			
-			textureW	: 512,
-		},
-		{
-			ballDesc	: '9',
-			stripped	: true,				
-			textureW	: 512,
-		},
-		{
-			ballDesc	: '8',
-			stripped	: true,				
-			textureW	: 512,
-		},
-		{
-			ballDesc	: '2',
-			stripped	: false,				
-			textureW	: 512,
-		},
+		// {
+		// 	ballDesc	: '9',
+		// 	stripped	: true,				
+		// 	textureW	: 512,
+		// },
+		// {
+		// 	ballDesc	: '8',
+		// 	stripped	: true,				
+		// 	textureW	: 512,
+		// },
+		// {
+		// 	ballDesc	: '2',
+		// 	stripped	: false,				
+		// 	textureW	: 512,
+		// },
+		// {
+		// 	ballDesc	: '3',
+		// 	stripped	: true,			
+		// 	textureW	: 512,
+		// },
+		// {
+		// 	ballDesc	: '9',
+		// 	stripped	: true,				
+		// 	textureW	: 512,
+		// },
+		// {
+		// 	ballDesc	: '8',
+		// 	stripped	: true,				
+		// 	textureW	: 512,
+		// },
+		// {
+		// 	ballDesc	: '2',
+		// 	stripped	: false,				
+		// 	textureW	: 512,
+		// },
 	]
 	var nBalls	= ballDescriptions.length
 	for(var i = 0; i < nBalls; i++){
@@ -270,8 +287,8 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 			object3d.position.z	= 1
 
 			var velocity	= new THREE.Vector3(0,0,2)			
-			var mapRadius	= 12
-
+			var velocity	= new THREE.Vector3(0,0,3)		
+			var mapRadius	= 16
 
 			onRenderFcts.push(function(delta, now){
 				// var speed	= 2*delta
@@ -288,46 +305,48 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 			})
 
 			function object3dInitPosition(){
+				object3d.rotation.x	= Math.PI*2*Math.random()
+				object3d.rotation.y	= Math.PI*2*Math.random()
+				object3d.rotation.z	= Math.PI*2*Math.random()		
 
 				object3d.position.x	= (Math.random()-0.5)*mapRadius
+				object3d.position.y	= 0
 				object3d.position.z	= (Math.random()-0.5)*mapRadius
+				object3d.position.setLength(mapRadius)
+				object3d.position.y	= object3d.geometry.radius
 
 				velocity.x	= (Math.random()-0.5)
 				velocity.z	= (Math.random()-0.5)
-				velocity.setLength(1+Math.random())
-
-				object3d.rotation.x	= Math.PI*2*Math.random()
-				object3d.rotation.y	= Math.PI*2*Math.random()
-				object3d.rotation.z	= Math.PI*2*Math.random()				
+				velocity.setLength(2+Math.random())
 			}
 
-			// // object3d.rotateOnAxis(new THREE.Vector3(1,0,0), Math.PI*2*Math.random())
-			// onRenderFcts.push(function(delta, now){
-			// 	var axis	= new THREE.Vector3(1,0,0)
-			// 	var angle	= 3 * delta
-			// 	object3d.rotateOnAxis(axis, angle)
-			// })
-
-
-			object3d.matrixAutoUpdate = false;
-			// object3d.rotation.rotationAutoUpdate	= false
-
-			object3d.updateMatrix();
-			var prevPosition	= new THREE.Vector3()
-			prevPosition.copy(object3d.position)
+			// add shadow
+			;(function(){
+				var shadow	= THREEx.createPoolBallShadow();
+				shadow.position.x	= object3d.position.x
+				shadow.position.y	= 0.01
+				shadow.position.z	= object3d.position.z
+				scene.add(shadow)
+				onRenderFcts.push(function(){
+					shadow.position.x	= object3d.position.x
+					shadow.position.z	= object3d.position.z
+				})
+			})()
 
 // TODO this could be threex.poolballrotationcontrols.js
+			object3d.matrixAutoUpdate = false;
+			object3d.updateMatrix();
 
+			var prevPosition	= new THREE.Vector3()
+			prevPosition.copy(object3d.position)
 			onRenderFcts.push(function(delta, now){
 				// compute velocity
 				var position	= object3d.position
 				var velocity	= position.clone().sub(prevPosition)
 				prevPosition.copy(position)
 
+				// update matrix
 				object3d.updateMatrix();
-
-				// from marbleSoccer https://github.com/jeromeetienne/marbleSoccer/blob/master/js/marble.js#L168
-
 
 				// solution to get rolling marble from |3d| on freenode
 				var translation	= new THREE.Vector3(position.x,position.y,position.z)
@@ -344,8 +363,7 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 				// put back the rotation
 				object3d.rotation.setFromRotationMatrix( object3d.matrix, object3d.rotation.order );
 
-				// object3d.rotation.copy(object3d.matrix.extractRotation())
-
+				// update matrixWorld
 				object3d.updateMatrixWorld(true);
 			});
 
@@ -354,7 +372,7 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 			//////////////////////////////////////////////////////////////////////////////////
 
 // TODO this could be threex.poolballsound.js
-// new THREEx.PoolBallSound(object3d, gameSounds)
+// new THREEx.PoolBallGameSound(object3d, gameSounds)
 			
 			var url	= 'sounds/roll.mp3'
 			// TODO handle caching later
@@ -368,7 +386,6 @@ require([ 'bower_components/threex.minecraft/package.require.js'
 				})
 
 				var prevPosition	= object3d.position.clone()
-
 				onRenderFcts.push(function(delta){ 
 					var velocity	= object3d.position.clone().sub(prevPosition)
 					var speed	= velocity.length()

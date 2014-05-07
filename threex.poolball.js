@@ -167,3 +167,43 @@ THREEx.createPoolBall.xCanvas	= {
 		ctx.stroke();
 	}
 };
+
+
+THREEx.createPoolBallShadow	= function(textureW){
+	textureW	= textureW !== undefined ? textureW : 512;
+
+	// Create canvas
+	var canvas	= document.createElement( 'canvas' );
+	var context	= canvas.getContext( '2d' );
+	canvas.width	= textureW;
+	canvas.height	= textureW;
+	var gradient	= context.createRadialGradient(
+		canvas.width  / 2,
+		canvas.height / 2,
+		0,
+		canvas.width  / 2,
+		canvas.height / 2,
+		canvas.width  / 2
+	);
+	gradient.addColorStop( 0.0, 'rgba(0,0,0,0.8)' );
+	gradient.addColorStop( 0.5, 'rgba(0,0,0,0.7)' );
+	gradient.addColorStop( 1.0, 'rgba(0,0,0,0.0)' );
+	context.fillStyle	= gradient;
+	context.fillRect( 0, 0, canvas.width, canvas.height );
+
+	// Create texture
+	var texture = new THREE.Texture( canvas );
+	texture.needsUpdate = true;
+
+	// create mesh
+	var geometry = new THREE.PlaneGeometry(1, 1);
+	var material = new THREE.MeshBasicMaterial({
+		map		: texture,
+		transparent	: true,
+	})
+	var object3d = new THREE.Mesh( geometry, material );
+	object3d.rotation.x = -Math.PI / 2;
+
+	// return the just-built mesh
+	return object3d	
+}

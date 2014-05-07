@@ -63,4 +63,15 @@ Some ball description are already done.
 * ```1``` to ```9``` will assign the official colors for [nine-ball](http://en.wikipedia.org/wiki/Nine-ball) pool
 
 ### Possible Improvements:
-* to add a shaddow, something simple like in threex.pacman
+* to add a shaddow, something simple like in threex.pacman, or from a texture of three.js distribution
+    - good canvas http://threejs.org/examples/canvas_geometry_earth.html
+    - put it below minecraft too
+* in demo.html make the ball starts behind the montains and disapears behind the montains too
+    - thus no more appearing/disapearing glitch
+
+
+
+
+
+
+
