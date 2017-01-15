@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
+<script src="../../threex.poolball.js"></script>
+<script src="../aframe-poolball.js"></script>
+<body>
+	<a-scene>		
+		<!-- <a-poolball ></a-poolball> -->
+		<a-entity poolball='type: 8; stripped: false' position="-1 1.6 -3"></a-entity>
+		<a-entity poolball='type: 9; stripped: true' position=" 1 1.6 -3"></a-entity>
+
+		<!-- put some other objects in the scene -->
+		<a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+		<a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+		<a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+		<a-sky color="#ECECEC"></a-sky> 
+	</a-scene>
+</body>
+</html>
