@@ -2,18 +2,18 @@
 //                Code Separator
 //////////////////////////////////////////////////////////////////////////////
 
-AFRAME.registerPrimitive('a-poolball', AFRAME.utils.extendDeep({}, AFRAME.primitives.getMeshMixin(), {
-        defaultComponents: {
-                pollball : {
-			type: '8',
-			stripped: true
-		},
-        },
-        // mappings: {
-        //         type: 'poolball.type',
-        //         stripped: 'poolball.stripped',
-	// }
-}));
+// AFRAME.registerPrimitive('a-poolball', AFRAME.utils.extendDeep({}, AFRAME.primitives.getMeshMixin(), {
+//         defaultComponents: {
+//                 pollball : {
+// 			type: '8',
+// 			stripped: true
+// 		},
+//         },
+//         mappings: {
+//                 type: 'poolball.type',
+//                 stripped: 'poolball.stripped',
+// 	}
+// }));
 
 //////////////////////////////////////////////////////////////////////////////
 //		Code Separator
