@@ -20,6 +20,12 @@ A Screenshot
 ============
 [![screenshot](https://raw.githubusercontent.com/jeromeetienne/threex.poolball/master/examples/images/screenshot-threex-poolball-512x512.jpg)](http://jeromeetienne.github.io/threex.poolball/examples/demo.html)
 
+# A-Frame Support
+You can include it in your a-frame too - [a-frame example](https://jeromeetienne.github.io/threex.poolball/a-frame/examples/aframe-poolball.html)
+
+You can download the components from [here](https://jeromeetienne.github.io/threex.poolball/a-frame/build/aframe-poolball.js)
+
+
 How To Install It
 =================
 
@@ -68,10 +74,3 @@ Some ball description are already done.
     - put it below minecraft too
 * in demo.html make the ball starts behind the montains and disapears behind the montains too
     - thus no more appearing/disapearing glitch
-
-
-
-
-
-
-
